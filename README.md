@@ -3,4 +3,10 @@ This application is an intelligent interview and resume analysis platform built 
 
 <h1>Tech Stack</h1>
 <h3>Frontend:</h3>
+
+- **HTML%**
+- **CSS3**
+- **JavaScript**
+- **Bootstrap** (Responsive Design)
+- **Jinja2** (Templating Engine)
 <h3>Backend:</h3>
