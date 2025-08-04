@@ -3,9 +3,13 @@ This application is an intelligent interview and resume analysis platform built 
 
 <h1>Tech Stack</h1>
 <h3>Frontend:</h3>
-  -**HTML5**
-  -**CSS3**
-  -JavaScript
-  -Bootstrap (Responsive Design)
-  -Jinja2 (Templating Engine)
+ - **Python** (Flask framework)
+- **JavaScript**, **HTML5**, **CSS3**
+- **Bootstrap** (Responsive design)
+- **Jinja2** (Templating engine)
+- **PostgreSQL** (Backend database)
+- **Gemini API** (AI interview & resume analysis)
+- **Web Speech API** (Voice-based interview interaction)
+- **SMTP** (Sending welcome emails to users)
+- **Git & GitHub** (Version control and deployment)
 <h3>Backend:</h3>
