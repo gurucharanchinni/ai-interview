@@ -1,1 +1,1 @@
-# Ai Interview Web Application
+# AI Interview
