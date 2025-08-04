@@ -19,3 +19,5 @@ This application is an intelligent interview and resume analysis platform built 
 - **SMTP** (`smtplib` and `email` modules in Python)
 - **SHA-256** (`hashlib` module in Python)
 - **Session Management** (`Flask-Session`)
+
+<h1>UI Snapshots</h1>
