@@ -14,6 +14,6 @@ This application is an intelligent interview and resume analysis platform built 
 - **Python** (Flask Framework)
 - **Gemini API** (AI based interview and resume analysis)
 - **PostgreSQL** (Storing User Data and Interactions)
-- **SMTP** (Welcome email for new users)
+- **SMTP** (`smtplib` and `email` modules in Python)
 - **SHA-256** (`hashlib` module in Python)
 - **Session Management** (`Flask-Session`)
