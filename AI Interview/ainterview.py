@@ -90,7 +90,6 @@ class AIInterview:
         
         # Clean and split questions
         questions = [q.strip("-• \n") for q in response.text.strip().split("\n") if q.strip()]
-        print(questions)
 
         return questions
     
@@ -118,5 +117,4 @@ class AIInterview:
         ]
         feedback = "\n".join(feedback_lines).strip()
         
-        print(score)        
         return score, feedback
