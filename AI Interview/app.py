@@ -6,11 +6,10 @@ from resumeats import ResumeATS
 from ainterview import AIInterview
 from resumeextract import ExtractText
 from databases import Database
-# from welcomeemail import WelcomeMail
+from welcomeemail import WelcomeMail
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random secret key
-# app.permanent_session_lifetime = timedelta(minutes=10)
 
 app.config['SECRET_KEY'] = 'your_secret_key'  # Same as before
 app.config['SESSION_TYPE'] = 'filesystem'  # Store sessions on server filesystem
@@ -260,8 +259,7 @@ def repractice(practice_id):
     questions = ""
     for q in questions_db:
         questions = q[0].split("^")
-    print(questions)
-    
+        
     session['questions'] = questions
     
     if rows:
@@ -293,8 +291,7 @@ def submit_interview_responses():
         # Get JSON data instead of form data
         data = request.get_json()
         responses = data.get('responses', []) if data else [] 
-        print(responses)
-               
+        
         # Validate and filter responses
         valid_responses = []
         for i, response in enumerate(responses):
@@ -320,9 +317,6 @@ def submit_interview_responses():
         question_dict = {}
         
         for r in valid_responses:
-            print(f"Question: {r['question']}")
-            print(f"Response: {r['response']}")
-            print("---")
             question_dict[r['question']] = r['response']
         
         # Get AI evaluation
@@ -434,3 +428,4 @@ def submit_interview_responses():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
