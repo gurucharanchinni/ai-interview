@@ -1,4 +1,4 @@
-<img width="1893" height="915" alt="image" src="https://github.com/user-attachments/assets/c8a9fa60-7a9e-46d1-8c3f-9020692cc70b" /><h1>AI Interview</h1>
+<h1>AI Interview</h1>
 <b>Your AI-Powered Partner for Interviews & Resumes</b>
 
 This application is an intelligent interview and resume analysis platform built using <b>Python</b>, <b>JavaScript</b>, <b>HTML5</b>, <b>CSS3</b>, <b>Jinja2</b>, and <b>Bootstrap</b>, with <b>PostgreSQL</b> as the backend database. It leverages the <b>Gemini API</b> for AI-driven insights and the <b>Web Speech API</b> to conduct interactive voice-based interviews.
@@ -67,11 +67,11 @@ This application is an intelligent interview and resume analysis platform built 
 
 <h1>UI Snapshots</h1>
 
-<img src="AI%20Interview/static/images/page1.PNG" alt="Homepage UI" width="700"/>
-<img src="AI%20Interview/static/images/page2.PNG" alt="Homepage UI" width="700"/>
-<img src="AI%20Interview/static/images/page3.PNG" alt="Homepage UI" width="700"/>
-<img src="AI%20Interview/static/images/page4.PNG" alt="Homepage UI" width="700"/>
-<img src="AI%20Interview/static/images/page5.PNG" alt="Homepage UI" width="700"/>
+<img src="AI%20Interview/static/images/page1.PNG" alt="Homepage UI" width="700"/><br>
+<img src="AI%20Interview/static/images/page2.PNG" alt="Homepage UI" width="700"/><br>
+<img src="AI%20Interview/static/images/page3.PNG" alt="Homepage UI" width="700"/><br>
+<img src="AI%20Interview/static/images/page4.PNG" alt="Homepage UI" width="700"/><br>
+<img src="AI%20Interview/static/images/page5.PNG" alt="Homepage UI" width="700"/><br>
 <img src="AI%20Interview/static/images/page6.PNG" alt="Homepage UI" width="700"/>
 <img src="AI%20Interview/static/images/page7.PNG" alt="Homepage UI" width="700"/>
 <img src="AI%20Interview/static/images/page8.PNG" alt="Homepage UI" width="700"/>
