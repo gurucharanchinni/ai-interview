@@ -67,11 +67,21 @@ This application is an intelligent interview and resume analysis platform built 
 
 <h1>UI Snapshots</h1>
 
-<img src="AI%20Interview/static/images/page1.PNG" alt="Homepage UI" width="700"/><br>
-<img src="AI%20Interview/static/images/page2.PNG" alt="Homepage UI" width="700"/><br>
-<img src="AI%20Interview/static/images/page3.PNG" alt="Homepage UI" width="700"/><br>
-<img src="AI%20Interview/static/images/page4.PNG" alt="Homepage UI" width="700"/><br>
-<img src="AI%20Interview/static/images/page5.PNG" alt="Homepage UI" width="700"/><br>
+<img src="AI%20Interview/static/images/page1.PNG" alt="Homepage UI" width="700"/>
+
+
+<img src="AI%20Interview/static/images/page2.PNG" alt="Homepage UI" width="700"/>
+
+
+<img src="AI%20Interview/static/images/page3.PNG" alt="Homepage UI" width="700"/>
+
+
+<img src="AI%20Interview/static/images/page4.PNG" alt="Homepage UI" width="700"/>
+
+
+<img src="AI%20Interview/static/images/page5.PNG" alt="Homepage UI" width="700"/>
+
+
 <img src="AI%20Interview/static/images/page6.PNG" alt="Homepage UI" width="700"/>
 <img src="AI%20Interview/static/images/page7.PNG" alt="Homepage UI" width="700"/>
 <img src="AI%20Interview/static/images/page8.PNG" alt="Homepage UI" width="700"/>
