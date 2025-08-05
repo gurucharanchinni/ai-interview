@@ -85,7 +85,14 @@ This application is an intelligent interview and resume analysis platform built 
 
 <img src="AI%20Interview/static/images/page5.PNG" alt="Homepage UI" width="700"/>
 
+<b>Interview Session Page: </b>
 
 <img src="AI%20Interview/static/images/page6.PNG" alt="Homepage UI" width="700"/>
+
+<b>Result Page: </b>
+
 <img src="AI%20Interview/static/images/page7.PNG" alt="Homepage UI" width="700"/>
+
+<b>Profile Page: </b>
+
 <img src="AI%20Interview/static/images/page8.PNG" alt="Homepage UI" width="700"/>
