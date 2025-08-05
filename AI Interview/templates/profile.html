@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="mb-4">My Profile</h1>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Personal Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Name</label>
+                            <p>{{ session.name }}</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <p>{{ session.email }}</p>
+                        </div>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#changePasswordForm" aria-expanded="false" aria-controls="changePasswordForm">
+                            Change Password
+                        </button>
+                        
+                        <div class="collapse mt-3" id="changePasswordForm">
+                            <div class="card card-body">
+                                <form action="{{ url_for('change_password') }}" method="POST">
+                                    <div class="mb-3">
+                                        <label for="current-password" class="form-label">Current Password</label>
+                                        <input type="password" class="form-control" id="current-password" name="current_password" required autocomplete="off">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="new-password" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="new-password" name="new_password" required autocomplete="off">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirm-password" class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirm-password" name="confirm_password" required autocomplete="off">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Password</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>My Practices</h4>
+                    </div>
+                    <div class="card-body">
+                        {% if practices %}
+                            <div class="row">
+                                {% for practice in practices %}
+                                <div class="col-md-6 mb-4">
+                                    <div class="practice-card">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                                <h5>{{ practice.role }}</h5>
+                                                <h5>Score: {{ practice.score }} / 100</h5>
+                                                {% if practice.company %}
+                                                <p class="mb-1">Company: {{ practice.company }}</p>
+                                                {% endif %}
+                                                <p class="mb-1">Round: {{ practice.round_type }}</p>
+                                                <p class="mb-1">Difficulty: {{ practice.difficulty }}</p>
+                                                <p class="mb-1">Duration: {{ practice.duration }} mins</p>
+                                                <p class="mb-1">Date: {{ practice.created_at.strftime('%Y-%m-%d') }}</p>
+                                            </div>
+                                            <a href="{{ url_for('repractice', practice_id=practice.id) }}" class="btn btn-primary">Repractice</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="text-center py-4">
+                                <p>You haven't done any practice interviews yet.</p>
+                                <a href="{{ url_for('interviews') }}" class="btn btn-primary">Start Practicing</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .practice-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+</style>
+{% endblock %}

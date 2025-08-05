@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Results - AI Interview Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/interview_results.css') }}">
+</head>
+<body>
+    <div class="results-wrapper">
+        <div class="results-header">
+            <h1 class="main-title">Interview Complete!</h1>
+        </div>
+
+        <div class="interview-card">
+            {% if interview_details %}
+            <div class="interview-header">
+                <h2 class="interview-title">{{ interview_details.selected_name or interview_details.role|replace('_', ' ')|title }} Interview</h2>
+                <div class="interview-meta">
+                    {% if interview_details.company_name %}
+                    <span class="meta-item">{{ interview_details.company_name }}</span>
+                    {% endif %}
+                    <span class="meta-item">{{ interview_details.round|replace('_', ' ')|title }}</span>
+                    <span class="meta-item">{{ interview_details.difficulty|title }}</span>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if results %}
+                {% if results.status == 'error' %}
+                    <div class="error-container">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="error-title">Oops! Something went wrong</h3>
+                        <p class="error-message">{{ results.message or 'There was an error processing your interview.' }}</p>
+                    </div>
+                {% else %}
+                    {% set score = results.score | int %}
+                    
+                    <div class="score-container">
+                        <div class="score-display">
+                            {% if score >= 80 %}
+                                <div class="score-box" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                            {% elif score >= 60 %}
+                                <div class="score-box" style="background: linear-gradient(135deg, #17a2b8, #20c997);">
+                            {% elif score >= 40 %}
+                                <div class="score-box" style="background: linear-gradient(135deg, #ffc107, #fd7e14);">
+                            {% else %}
+                                <div class="score-box" style="background: linear-gradient(135deg, #dc3545, #e74c3c);">
+                            {% endif %}
+                                <div class="score-number">{{ score }}</div>
+                                <div class="score-text">out of 100</div>
+                            </div>
+                            
+                            <div class="score-label">
+                                {% if score >= 80 %}
+                                    Excellent Performance!
+                                {% elif score >= 60 %}
+                                    Good Performance!
+                                {% elif score >= 40 %}
+                                    Average Performance
+                                {% else %}
+                                    Needs Improvement
+                                {% endif %}
+                            </div>
+                            <div class="score-description">
+                                {% if score >= 80 %}
+                                    Outstanding work! You demonstrated excellent knowledge and communication skills.
+                                {% elif score >= 60 %}
+                                    Well done! You showed good understanding with room for minor improvements.
+                                {% elif score >= 40 %}
+                                    Decent effort! Focus on strengthening your responses and technical knowledge.
+                                {% else %}
+                                    Keep practicing! Review the feedback and work on the suggested improvements.
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {% if results.total_questions %}
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">{{ results.total_questions }}</div>
+                                <div class="stat-label">Questions Answered</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">{{ interview_details.duration if interview_details else 'N/A' }}</div>
+                                <div class="stat-label">Minutes Duration</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="feedback-section">
+                        <h3 class="feedback-title">
+                            <i class="fas fa-comments"></i>
+                            Detailed Feedback & Recommendations
+                        </h3>
+                        <div class="feedback-content">
+                            {{ results.feedback|replace('\n', '<br>')|safe }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="error-container">
+                    <div class="error-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="error-title">No Results Found</h3>
+                    <p class="error-message">No interview results were found. Please try taking an interview again.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="action-section">
+            <div class="btn-group">
+                <a href="{{ url_for('interviews') }}" class="action-btn btn-primary-action">
+                    <i class="fas fa-redo"></i>
+                    Take Another Interview
+                </a>
+                <a href="{{ url_for('profile') }}" class="action-btn btn-secondary-action">
+                    <i class="fas fa-user"></i>
+                    View Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Clear results from session after displaying
+        fetch('/clear_results', { method: 'POST' })
+            .catch(error => console.log('Error clearing results:', error));
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate score box on load
+            const scoreBox = document.querySelector('.score-box');
+            if (scoreBox) {
+                setTimeout(() => {
+                    scoreBox.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        scoreBox.style.transform = 'scale(1)';
+                    }, 200);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

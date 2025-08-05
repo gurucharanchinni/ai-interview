@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1>Ace Your Next Interview with AI</h1>
+                <p>AInterview uses advanced AI technology to help you practice and prepare for job interviews. Get real-time feedback and improve your interview skills.</p>
+                <a href="{{ url_for('interviews') }}" class="btn btn-primary btn-lg">Practice Interviews</a>
+                <a href="{{ url_for('resume') }}" class="btn btn-primary btn-lg" style="margin-left: 130px;">Analyze Resume</a>
+
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="{{ url_for('static', filename='images/hero.png') }}" alt="AI Interview" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>How AIerview Works</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Interviews</h3>
+                    <p>Practice with our AI interviewer that adapts to your responses and provides realistic interview scenarios.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Real-time Feedback</h3>
+                    <p>Get instant feedback on your answers, and overall performance to identify areas for improvement.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Resume Analysis</h3>
+                    <p>Our AI analyzes your resume against job descriptions to help you optimize it for ATS systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Frequently Asked Questions</h2>
+            <p class="lead">Find answers to common questions about AInterview</p>
+        </div>
+        
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How does the AI interview process work?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Our AI interview system uses natural language processing to understand your responses and provide realistic interview experiences. You can select the type of interview, difficulty level, and duration. The AI will ask questions, listen to your responses, and provide feedback on your answers.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Is my data secure and private?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we take data privacy very seriously. All your interview recordings, resume data, and personal information are encrypted and stored securely. We do not share your data with third parties without your explicit consent.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How accurate is the resume analysis?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Our resume analysis tool is trained on thousands of successful resumes and uses the same algorithms that many ATS (Applicant Tracking Systems) use. While no analysis is 100% accurate, our tool provides valuable insights to help you optimize your resume for specific job descriptions.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Can I practice for specific companies or roles?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes! We offer interview practice sessions tailored to specific companies and roles. Our AI is trained on real interview questions from top companies and can simulate interviews for various positions across different industries.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Is there a limit to how many interviews I can practice?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We offer different subscription plans with varying limits. Our free plan allows for a limited number of practice interviews per month, while our premium plans offer unlimited practice sessions and additional features like detailed feedback and performance analytics.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,502 @@
+:root {
+    --primary-color: #4a00e0;
+    --secondary-color: #8e2de2;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --dark-color: #1a1a2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.interview-container {
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Interview Header */
+.interview-header {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.interview-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.interview-meta .badge {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+}
+
+/* AI Avatar */
+.ai-image-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.ai-avatar {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.ai-face {
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+
+.ai-eyes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.eye {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    animation: blink 3s infinite;
+}
+
+.ai-mouth {
+    width: 25px;
+    height: 12px;
+    border: 2px solid white;
+    border-top: none;
+    border-radius: 0 0 25px 25px;
+    margin: 0 auto;
+    animation: talk 2s infinite;
+}
+
+.ai-pulse {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.ai-status {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Duration Display */
+.duration-display {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.duration-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.duration-time {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.timer-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--success-color);
+    padding: 0.5rem;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 10px;
+    border: 2px solid var(--success-color);
+}
+
+.timer-display.warning {
+    color: var(--warning-color);
+    background: rgba(255, 193, 7, 0.1);
+    border-color: var(--warning-color);
+}
+
+.timer-display.danger {
+    color: var(--danger-color);
+    background: rgba(220, 53, 69, 0.1);
+    border-color: var(--danger-color);
+}
+
+/* Current Question */
+.current-question {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.question-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.question-card h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.question-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Control Buttons */
+.control-buttons {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 0, 224, 0.3);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+.btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+}
+
+/* Transcript Container */
+.transcript-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.transcript-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--info-color);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Interview Complete */
+.interview-complete {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.complete-card h2 {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+/* Recording Indicator */
+.recording-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--danger-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    z-index: 1000;
+    animation: recordingPulse 1s infinite;
+    font-size: 0.9rem;
+}
+
+.recording-dot {
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    animation: recordingBlink 1s infinite;
+}
+
+/* Camera Container */
+.camera-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 250px;
+    height: 188px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border: 2px solid var(--primary-color);
+}
+
+.camera-header {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.camera-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.camera-indicator {
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    animation: cameraIndicatorBlink 1s infinite;
+}
+
+#cameraFeed {
+    width: 100%;
+    height: calc(100% - 32px);
+    object-fit: cover;
+    background: #000;
+}
+
+/* Sign In Required Styling */
+.alert {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.alert-info {
+    background: rgba(23, 162, 184, 0.1);
+    border: 2px solid var(--info-color);
+    color: var(--dark-color);
+}
+
+.alert-warning {
+    background: rgba(255, 193, 7, 0.1);
+    border: 2px solid var(--warning-color);
+    color: var(--dark-color);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+@keyframes talk {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.2); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.1); opacity: 0; }
+}
+
+@keyframes recordingPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes recordingBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes cameraIndicatorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Fullscreen styles */
+.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .interview-container {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+    
+    .interview-title {
+        font-size: 1.5rem;
+    }
+    
+    .duration-time {
+        font-size: 1.5rem;
+    }
+    
+    .timer-display {
+        font-size: 1.2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .camera-container {
+        width: 180px;
+        height: 135px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .recording-indicator {
+        top: 10px;
+        right: 10px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .ai-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .ai-face {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media (max-width: 576px) {
+    .camera-container {
+        width: 150px;
+        height: 112px;
+    }
+    
+    .interview-header,
+    .ai-image-container,
+    .duration-display,
+    .control-buttons,
+    .current-question,
+    .transcript-container {
+        padding: 0.75rem;
+    }
+    
+    .control-buttons .btn-lg {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Disable text selection during interview */
+.interview-active {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide scrollbars during interview */
+.interview-active::-webkit-scrollbar {
+    display: none;
+}
+
+.interview-active {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

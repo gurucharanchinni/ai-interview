@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Interviews{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="mb-4">Practice Interviews</h1>
+        
+        {% if 'user_id' in session %}
+            <!-- Practice by Position Section -->
+            <div class="mb-5">
+                <h2 class="mb-4">Practice by Position</h2>
+                <div class="row" id="positionContainer">
+                    <!-- Positions will be dynamically generated here -->
+                </div>
+            </div>
+            
+            <!-- Practice by Company Section -->
+            <div class="mb-5">
+                <h2 class="mb-4">Practice by Company</h2>
+                <div class="row" id="companyContainer">
+                    <!-- Companies will be dynamically generated here -->
+                </div>
+            </div>
+        {% else %}
+            <!-- Not logged in message -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="alert alert-info text-center p-5">
+                        <h3 class="mb-3">Sign In Required</h3>
+                        <p class="lead mb-4">Please sign in to access interview practice features and start your AI-powered interview preparation.</p>
+                        <a href="{{ url_for('auth') }}" class="btn btn-primary btn-lg">Sign In / Register</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Interview Modal (only show if user is logged in) -->
+{% if 'user_id' in session %}
+<div class="modal fade" id="interviewModal" tabindex="-1" aria-labelledby="interviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="interviewModalLabel">Interview Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="interviewForm" action="{{ url_for('start_interview') }}" method="POST" enctype="multipart/form-data">
+                    <!-- Hidden fields to store interview details -->
+                    <input type="hidden" id="section_type" name="section_type" value="">
+                    <input type="hidden" id="selected_name" name="selected_name" value="">
+                    <input type="hidden" id="creator_name" name="creator_name" value="">
+                    <input type="hidden" id="company_name" name="company_name" value="">
+                    
+                    <!-- Upload Resume -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Upload Resume (Optional)</label>
+                        <input type="file" class="form-control" name="resume" accept=".pdf,.doc,.docx" autocomplete="off">
+                        <div class="form-text">Supported formats: PDF, DOC, DOCX</div>
+                    </div>
+                    
+                    <!-- Select Round -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Select the Round</label>
+                        <div class="d-flex gap-2 flex-wrap" id="roundSelection">
+                            <!-- Round options will be generated dynamically -->
+                        </div>
+                        <input type="hidden" id="round" name="round" value="">
+                    </div>
+                    
+                    <!-- Select Difficulty Level -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Select Difficulty Level</label>
+                        <div class="d-flex gap-2 flex-wrap" id="difficultySelection">
+                            <!-- Difficulty options will be generated dynamically -->
+                        </div>
+                        <input type="hidden" id="difficulty" name="difficulty" value="">
+                    </div>
+                    
+                    <!-- Role Selection (Only for Company Section) -->
+                    <div class="mb-4" id="roleSelection" style="display: none;">
+                        <label class="form-label fw-bold">Select Role</label>
+                        <div class="d-flex gap-2 flex-wrap" id="roleButtons">
+                            <!-- Role options will be generated dynamically -->
+                        </div>
+                        <input type="hidden" id="role" name="role" value="">
+                    </div>
+                    
+                    <!-- Duration of Interview -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Duration of Interview</label>
+                        <div class="d-flex gap-2 flex-wrap" id="durationSelection">
+                            <!-- Duration options will be generated dynamically -->
+                        </div>
+                        <input type="hidden" id="duration" name="duration" value="">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary px-4" id="startInterviewBtn">Start Interview</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+{% if 'user_id' in session %}
+<script type="module" src="{{ url_for('static', filename='js/interviews.js') }}"></script>
+{% endif %}
+{% endblock %}

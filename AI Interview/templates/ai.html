@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview - {{ interview_details.selected_name if interview_details else 'Interview' }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ai_interview.css') }}">
+</head>
+<body>
+    {% if 'user_id' in session %}
+        {% if interview_details %}
+        <div class="interview-container">
+            <!-- Interview Header -->
+            <div class="interview-header text-center">
+                <h1 class="interview-title">
+                    {{ interview_details.selected_name or interview_details.role|replace('_', ' ')|title }} Interview
+                </h1>
+                <div class="interview-meta">
+                    <span class="badge bg-primary me-2">{{ interview_details.section_type|title }}</span>
+                    <span class="badge bg-secondary me-2">{{ interview_details.difficulty|title }}</span>
+                    <span class="badge bg-info">{{ interview_details.round|replace('_', ' ')|title }}</span>
+                </div>
+            </div>
+
+            <!-- AI Interview Image -->
+            <div class="ai-image-container text-center">
+                <div class="ai-avatar">
+                    <div class="ai-face">
+                        <div class="ai-eyes">
+                            <div class="eye left-eye"></div>
+                            <div class="eye right-eye"></div>
+                        </div>
+                        <div class="ai-mouth"></div>
+                    </div>
+                    <div class="ai-pulse"></div>
+                </div>
+                <p class="ai-status mt-3">AI Interviewer Ready</p>
+            </div>
+
+            <!-- Duration Display -->
+            <div class="duration-display text-center">
+                <div class="duration-card">
+                    <h3>Interview Duration</h3>
+                    <div class="duration-time" style="display: none;">{{ interview_details.duration }} minutes</div>
+                    <div class="timer-display" id="timerDisplay">
+                        <span id="timeRemaining">{{ interview_details.duration }}:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Question Display -->
+            <div class="current-question" id="currentQuestionContainer" style="display: none;">
+                <div class="question-card">
+                    <h4>Question <span id="questionNumber">1</span></h4>
+                    <p id="currentQuestion">Loading question...</p>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="control-buttons text-center">
+                <button id="startInterviewBtn" class="btn btn-success btn-lg me-3">
+                    <i class="fas fa-play"></i> Start Interview
+                </button>
+                <button id="speakingBtn" class="btn btn-primary btn-lg me-3" disabled>
+                    <i class="fas fa-microphone"></i> Start Speaking
+                </button>
+                <button id="nextQuestionBtn" class="btn btn-info btn-lg" style="display: none;">
+                    <i class="fas fa-arrow-right"></i> Next Question
+                </button>
+            </div>
+
+            <!-- Transcript Display -->
+            <div class="transcript-container" id="transcriptDisplay" style="display: none;">
+                <div class="transcript-content">
+                    <strong>Your Response:</strong><br>
+                    <em>Start speaking...</em>
+                </div>
+            </div>
+
+            <!-- Interview Complete -->
+            <div class="interview-complete text-center" id="interviewComplete" style="display: none;">
+                <div class="complete-card">
+                    <h2>Interview Completed!</h2>
+                    <p>Thank you for completing the interview. Your responses have been saved.</p>
+                    <div class="spinner-border text-primary" role="status" id="evaluationSpinner">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3" id="evaluationStatus">Evaluating your responses...</p>
+                    <!-- Exit Interview button removed - automatic redirect -->
+                </div>
+            </div>
+
+            <!-- Recording Indicator -->
+            <div class="recording-indicator" id="recordingIndicator" style="display: none;">
+                <div class="recording-dot"></div>
+                <span>Recording...</span>
+            </div>
+
+            <!-- Camera Feed -->
+            <div class="camera-container" id="cameraContainer" style="display: none;">
+                <div class="camera-header">
+                    <span class="camera-status">Camera Active</span>
+                    <div class="camera-indicator"></div>
+                </div>
+                <video id="cameraFeed" autoplay muted playsinline></video>
+            </div>
+        </div>
+        {% else %}
+        <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="alert alert-warning text-center p-5">
+                        <h3 class="mb-3">No Interview Session Found</h3>
+                        <p class="lead mb-4">Please start an interview from the interviews page to access the AI interviewer.</p>
+                        <a href="{{ url_for('interviews') }}" class="btn btn-primary btn-lg">Go to Interviews</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% else %}
+    <!-- Not logged in message -->
+    <div class="container-fluid d-flex align-items-center justify-content-center min-vh-100">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="alert alert-info text-center p-5">
+                    <h3 class="mb-3">Sign In Required</h3>
+                    <p class="lead mb-4">Please sign in to access AI interview features and start your interview preparation.</p>
+                    <a href="{{ url_for('auth') }}" class="btn btn-primary btn-lg">Sign In / Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/ai_interview.js') }}"></script>
+</body>
+</html>

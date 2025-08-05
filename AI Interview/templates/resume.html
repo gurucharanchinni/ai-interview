@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Analysis{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="mb-4">Resume ATS Analysis</h1>
+        
+        {% if 'user_id' in session %}
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="resume-analyzer">
+                        <p class="lead mb-4">Upload your resume and enter a job description to get an ATS compatibility score and suggestions for improvement.</p>
+                        
+                        <form action="{{ url_for('analyze_resume') }}" method="POST" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label for="resume" class="form-label">Upload Resume</label>
+                                <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx" required autocomplete="off">
+                                <div class="form-text">Supported formats: PDF, DOC, DOCX</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="job_description" class="form-label">Job Description</label>
+                                <textarea class="form-control" id="job_description" name="job_description" rows="6" placeholder="Paste the job description here..." required autocomplete="off"></textarea>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Analyze Resume</button>
+                            </div>
+                        </form>
+                        
+                        {% if ats_score is defined %}
+                        <div class="ats-score">
+                            <h3 class="mb-4">Your ATS Compatibility Score</h3>
+                            <div class="score-circle" data-score="{{ ats_score }}">
+                                <span class="score-value">{{ ats_score }}%</span>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4>Recommendations</h4>
+                                <ul class="list-group">
+                                    {% if insights %}
+                                        {% for insight in insights %}
+                                            <li class="list-group-item">{{ insight }}</li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li class="list-group-item">Add more relevant keywords from the job description</li>
+                                        <li class="list-group-item">Quantify your achievements with specific metrics</li>
+                                        <li class="list-group-item">Use a simpler format for better ATS parsing</li>
+                                        <li class="list-group-item">Include more technical skills mentioned in the job posting</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <!-- Not logged in message -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="alert alert-info text-center p-5">
+                        <h3 class="mb-3">Sign In Required</h3>
+                        <p class="lead mb-4">Please sign in to analyze your resume and get ATS compatibility scores.</p>
+                        <a href="{{ url_for('auth') }}" class="btn btn-primary btn-lg">Sign In / Register</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const scoreCircle = document.querySelector('.score-circle');
+        
+        if (scoreCircle) {
+            const score = parseInt(scoreCircle.getAttribute('data-score'));
+            scoreCircle.style.setProperty('--score', score);
+        }
+    });
+</script>
+{% endblock %}
