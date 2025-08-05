@@ -66,6 +66,3 @@ This application is an intelligent interview and resume analysis platform built 
 - **Session Management** (`Flask-Session`)
 
 <h1>UI Snapshots</h1>
-
-![Logo](AI Interview/static/images/hero.png)
-
