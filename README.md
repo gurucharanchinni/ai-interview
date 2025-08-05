@@ -3,9 +3,7 @@ This application is an intelligent interview and resume analysis platform built 
 
 <h1>Features</h1>
 
-<h1>Features</h1>
-
-- **User Registration**: Allows users to register by setting their name, email, and password. The password is securely encoded using the `hashlib` module before storing it in the database.
+- **User Registration**: Allows users to register by setting their name, email, and password. The password is securely encoded using the `hashlib` module before storing it in the database. Upon successful registration, a **welcome email** is sent to the new user using the `smtplib` module.
 
 - **Login Authentication**: Users can log in using their registered email and password. The session lasts for 10 minutes. Once the session expires, the user is required to re-login to access any features.
 
@@ -43,7 +41,8 @@ This application is an intelligent interview and resume analysis platform built 
   - Option to **change the password**
   - Displays a **history of attended interviews** with corresponding scores
   - Provides a **Repractice** feature allowing users to revisit and retake previous interviews to improve performance
-
+ 
+- **Logout with Session Invalidation**: Allows users to securely log out of the application. When a user logs out, the session is invalidated immediately, ensuring that all protected routes and pages are inaccessible until the user logs in again.
 
 <h1>Tech Stack</h1>
 <h3>Frontend:</h3>
