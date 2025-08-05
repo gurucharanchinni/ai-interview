@@ -7,7 +7,7 @@ This application is an intelligent interview and resume analysis platform built 
 
 - **Login Authentication**: Users can log in using their registered email and password. The session lasts for 10 minutes. Once the session expires, the user is required to re-login to access any features.
 
-- **Session-Based Access Control**: Every page in the application checks for valid session authentication. Only logged-in users can access core features such as interview simulation and resume analysis.
+- **Session-Based Access Control**: Every page in the application checks for valid session authentication using `Flask-Session`. Only logged-in users can access core features such as interview simulation and resume analysis.
 
 - **Interview Categories**: The Interviews section includes two categories:
   - **Role-Based Interviews**: Focused on the selected job role.
@@ -38,8 +38,8 @@ This application is an intelligent interview and resume analysis platform built 
   - The complete interview session and its questions are stored in the database for future access
 
 - **Profile Page**:
-  - Option to **change the password**
-  - Displays a **history of attended interviews** with corresponding scores
+  - Option to **Change the Password**
+  - Displays a **History of attended interviews** with corresponding scores
   - Provides a **Repractice** feature allowing users to revisit and retake previous interviews to improve performance
  
 - **Logout with Session Invalidation**: Allows users to securely log out of the application. When a user logs out, the session is invalidated immediately, ensuring that all protected routes and pages are inaccessible until the user logs in again.
