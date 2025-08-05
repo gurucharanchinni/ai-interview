@@ -13,9 +13,11 @@ This application is an intelligent interview and resume analysis platform built 
   - **Role-Based Interviews**: Focused on the selected job role.
   - **Company-Based Interviews**: Includes behavioral and role-specific questions based on the selected company.
 
+  User has to select:
   - Difficulty level
   - Type of round
   - Duration
+  
   In Company-Based interviews, the user can choose:
   - Job role within the selected company
 
